@@ -1,5 +1,5 @@
 ## Changelog
-### 2026-02-09 (Changelog #001)
+### 09-02-2026 (Changelog #001)
 - Added Character class
 - Added Skill class
 - Added CompositeSkill class
