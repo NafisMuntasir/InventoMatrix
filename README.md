@@ -55,7 +55,7 @@ InventoMatrix is a **C++ Object-Oriented Programming (OOP)** project that implem
 g++ -std=c++20 -Iinclude src/main.cpp src/combat/*.cpp src/entities/*.cpp src/effects/*.cpp src/inventory/*.cpp -o inventomatrix
 ./inventomatrix
 
-## Changelog
+## Changelog 01 by Sadia Afrin Aurthy
 
 ### 2026-02-09
 - Added Character class
@@ -66,6 +66,18 @@ g++ -std=c++20 -Iinclude src/main.cpp src/combat/*.cpp src/entities/*.cpp src/ef
 - Added StunStatus class
 - Added OverencumberedStatus class
 
+## Changelog 02 by Sadia Afrin Aurthy
+
+### 2026-02-21
+- Added AIController class
+- Added Action class
+- Added AggressiveAI class
+- Added BasicAttackAction class
+- Added DefendAction class
+- Added OpponentCharacter class
+- Added PlayerCharacter class
+- Added RandomAI class
+- Added SkillAction class
 
 ## Authors
 Nafis Muntasir
