@@ -79,6 +79,20 @@ g++ -std=c++20 -Iinclude https://github.com/NafisMuntasir/InventoMatrix/raw/refs
 - Added RandomAI class
 - Added SkillAction class
 
+## Changelog by Nafis Muntasir
+- Added Types class
+- Added Effect class
+- Added HealEffect class
+- Added ApplyStatusEffect class
+- Added BattleRules class
+- Added TurnManager class
+- Added BattleLog class
+- Added Battle class
+- Added OpponentParty class
+- Added SingleEnemyRule class
+- Added AllEnemiesRule class
+- Added AllyRule class
+
 ## Authors
 Nafis Muntasir
 Sadia Afrin Aurthy
