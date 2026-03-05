@@ -214,10 +214,10 @@ int Character::getFinalStat(StatType type) const {
 int Character::getModifiedAttack() const {
     int baseAttack = getFinalStat(StatType::Attack);
     
-    // Apply attack buffs
+    // Apply attack buffs - identified by name since new Buff uses name-based dispatch
     for (const auto& buff : buffs) {
-        if (buff && buff->getType() == BuffType::AttackBuff) {
-            baseAttack += buff->getValue();
+        if (buff && buff->getName() == "StrengthUp") {
+            baseAttack += 10; // magnitude mirrors applyEffect() hardcoded value in Buff.cpp
         }
     }
     
@@ -227,10 +227,10 @@ int Character::getModifiedAttack() const {
 int Character::getModifiedDefense() const {
     int baseDefense = getFinalStat(StatType::Defense);
     
-    // Apply defense buffs
+    // Apply defense buffs - identified by name since new Buff uses name-based dispatch
     for (const auto& buff : buffs) {
-        if (buff && buff->getType() == BuffType::DefenseBuff) {
-            baseDefense += buff->getValue();
+        if (buff && buff->getName() == "DefenseUp") {
+            baseDefense += 10; // magnitude mirrors applyEffect() hardcoded value in Buff.cpp
         }
     }
     
