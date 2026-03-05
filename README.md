@@ -93,6 +93,13 @@ g++ -std=c++20 -Iinclude https://github.com/NafisMuntasir/InventoMatrix/raw/refs
 - Added AllEnemiesRule class
 - Added AllyRule class
 
+## Changelog by Sadia Afrin Aurthy
+###2026-03-05
+-Added StatType enum class
+-Added DamageType enum class
+-Added BuffType enum class
+-Added TickTiming enum class
+
 ## Authors
 Nafis Muntasir
 Sadia Afrin Aurthy
