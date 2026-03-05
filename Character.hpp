@@ -1,7 +1,9 @@
+#pragma once
 #include <string>
 #include <vector>
 #include <memory>
 #include "StatBlock.hpp"
+#include "StatType.hpp"
 #include "Resource.hpp"
 
 // Forward declarations
