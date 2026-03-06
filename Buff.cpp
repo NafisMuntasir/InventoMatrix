@@ -20,7 +20,7 @@ bool Buff::isExpired()const{
     return statusDuration<=0;
 }
 void Buff::applyEffect(Battle &battle,Character &actor,Character &target){
-    cout<<"Applying Buff:"<<statusName<<" to "<<target.getName()<<endl;
+    cout << "Applying Buff:" << statusName << " to " << target.getName() <<endl;
     if(statusName=="Poison"){
         if(statusName=="Poison"){
             target.takeDamage(5);
@@ -31,5 +31,3 @@ void Buff::applyEffect(Battle &battle,Character &actor,Character &target){
         decrementDuration();
     }
 }
-
-
