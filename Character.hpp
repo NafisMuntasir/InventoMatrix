@@ -62,6 +62,7 @@ public:
     
     void addWeight(int amount);
     void removeWeight(int amount);
+    void increaseAttack(int amount);
 
     // Core operations (abstraction)
     void takeDamage(int amount);
