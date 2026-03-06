@@ -91,6 +91,10 @@ void Character::removeWeight(int amount) {
     weight = std::max(0, weight - amount);
 }
 
+void Character::increaseAttack(int amount) {
+    baseStats.increaseStat(StatType::Attack, amount);
+}
+
 void Character::takeDamage(int amount) {
     hp = std::max(0, hp - std::max(0, amount));
 }
