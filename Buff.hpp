@@ -21,6 +21,6 @@ class Buff{
     TickTiming getTiming()const;
     void decrementDuration();
     bool isExpired()const;
-    void applyEffect(Battle& battle,Character& character);
+    void applyEffect(Battle& battle,Character& character, Character& target);
 };
 #endif
