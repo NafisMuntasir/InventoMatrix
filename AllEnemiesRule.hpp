@@ -8,6 +8,7 @@
 // hit the entire opposing party simultaneously.
 
 #include "TargetingRule.hpp"
+#include "Battle.hpp"
 
 class AllEnemiesRule : public TargetingRule {
 public:

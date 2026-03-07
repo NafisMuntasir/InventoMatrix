@@ -1,15 +1,15 @@
 #ifndef TARGETINGRULE_H
 #define TARGETINGRULE_H
-#include "Battle.h"
-#include "Character.h"
-#include "Party.h"
+#include "Battle.hpp"
+#include "Character.hpp"
+#include "Party.hpp"
 class TargetingRule{
     public:
     TargetingRule()=default;
     virtual ~TargetingRule()=default;
 
     virtual void applyRule(Battle& battle, Character& actor, Party& target);
-    virtual bool validateTarget(const Party& target)const;
+    virtual bool validateTargets(const Party& target)const;
 };
 
 #endif
