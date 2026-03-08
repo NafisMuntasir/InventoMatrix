@@ -1,4 +1,4 @@
-#include "TargetingRule.h"
+#include "TargetingRule.hpp"
 void TargetingRule::applyRule(Battle& battle, Character& actor, Party& target){
     if(validateTarget(target)){
         battle.executeAction(actor,target);
