@@ -1,8 +1,14 @@
 #include "Buff.hpp"
 #include "Character.hpp"
 #include "Battle.hpp"
-Buff::Buff(const string *name,int duration,TickTiming timing):statusName(*name),statusDuration(duration),timing(timing){}
-string Buff::getName()const{
+
+#include <iostream>
+#include <string>
+
+Buff::Buff(const std::string* name, int duration, TickTiming timing)
+    : statusName(name ? *name : std::string()), statusDuration(duration), timing(timing) {}
+
+std::string Buff::getName() const {
     return statusName;
 }
 int Buff::getStatusDuration()const{
@@ -20,7 +26,7 @@ bool Buff::isExpired()const{
     return statusDuration<=0;
 }
 void Buff::applyEffect(Battle &battle,Character &actor,Character &target){
-    cout << "Applying Buff:" << statusName << " to " << target.getName() <<endl;
+    std::cout << "Applying Buff:" << statusName << " to " << target.getName() << std::endl;
     if(statusName=="Poison"){
         if(statusName=="Poison"){
             target.takeDamage(5);

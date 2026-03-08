@@ -14,16 +14,26 @@ Party::~Party(){
     count--;
 }
 
-std::string Party::getPartyName() const{
+const std::string& Party::getPartyName() const {
     return partyName;
 }
 
-int Party::getPartyID() const{
+int Party::getPartyID() const {
     return partyID;
 }
 
-std::vector<std::shared_ptr<Character>> Party::getMembers() const{
+const std::vector<std::shared_ptr<Character>>& Party::getMembers() const {
     return members;
+}
+
+std::vector<std::shared_ptr<Character>> Party::getAliveMembers() const {
+    std::vector<std::shared_ptr<Character>> alive;
+    for (const auto& member : members) {
+        if (member && member->isAlive()) {
+            alive.push_back(member);
+        }
+    }
+    return alive;
 }
 
 void Party::addMember(std::shared_ptr<Character> member){

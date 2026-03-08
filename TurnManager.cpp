@@ -72,4 +72,5 @@ PartyPtr TurnManager::nextParty() {
 
 void TurnManager::resetRound() {
     round = 0;
+    currentPartyIndex = 0;
 }

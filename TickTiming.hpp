@@ -15,5 +15,6 @@
 
 enum class TickTiming {
     TurnStart,
-    TurnEnd
+    TurnEnd,
+    Immediate
 };

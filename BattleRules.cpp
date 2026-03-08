@@ -36,10 +36,24 @@ bool BattleRules::rollHit(const CharPtr& actor, const CharPtr& target) const {
 
 int BattleRules::computeDamage(const CharPtr& actor, const CharPtr& target,
                                 int base, DamageType type) const {
-    (void)type;
-
     int atk = actor->getModifiedAttack();
     int def = target->getModifiedDefense();
+
+    // Basic damage calculation. DamageType influences how defense is applied.
+    switch (type) {
+        case DamageType::Physical:
+            // Full defense applies
+            break;
+        case DamageType::Magical:
+            // Magical attacks bypass some defense.
+            def = def / 2;
+            break;
+        case DamageType::True:
+            // True damage ignores defense entirely.
+            def = 0;
+            break;
+    }
+
     int raw = base + atk - def;
 
     if (target->isDefending()) {

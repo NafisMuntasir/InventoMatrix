@@ -10,8 +10,8 @@
 // =========================
 
 // Constructor
-OpponentParty::OpponentParty(std::string name, int id, int maxSize)
-    : Party(std::move(name), id, maxSize) {}
+OpponentParty::OpponentParty(std::string name, int /*id*/, int /*maxSize*/)
+    : Party(std::move(name)) {}
 
 // Getters
 std::shared_ptr<AIController> OpponentParty::getAI() const {

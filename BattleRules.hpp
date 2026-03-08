@@ -8,6 +8,8 @@
 // rolls. Designed to be sub-classed for custom rule sets.
 
 #include "Types.hpp"
+#include "StatType.hpp"
+#include "DamageType.hpp"
 #include <algorithm>
 #include <cstdlib>
 

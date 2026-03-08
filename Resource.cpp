@@ -9,7 +9,11 @@
 Resource::Resource() : current(0), max(0) {}
 
 // Parameterized constructor: initializes current and max with given values.
-Resource::Resource(int cur, int mx) : current(cur), max(mx) {}
+// Clamps max to a non-negative number and clamps current to [0, max].
+Resource::Resource(int cur, int mx) {
+    max = std::max(0, mx);
+    current = std::clamp(cur, 0, max);
+}
 
 // Returns the current amount of the resource.
 int Resource::getCurrent() const {
@@ -36,19 +40,22 @@ void Resource::setCurrent(int value) {
 // Sets the maximum value of the resource.
 // If the current value is higher than the new max, it is clamped down.
 void Resource::setMax(int value) {
-    max = value;
+    // Ensure max is non-negative, then clamp current to the new range.
+    max = std::max(0, value);
     if (current > max) current = max;
 }
 
 // Restores the resource by a certain amount.
-// Internally uses setCurrent to ensure it does not exceed max.
+// Negative amounts are ignored, and the result is clamped to [0, max].
 void Resource::restore(int amount) {
+    if (amount <= 0) return;
     setCurrent(current + amount);
 }
 
 // Consumes (reduces) the resource by a certain amount.
-// Internally uses setCurrent to ensure it does not go below 0.
+// Negative amounts are ignored, and the result is clamped to [0, max].
 void Resource::consume(int amount) {
+    if (amount <= 0) return;
     setCurrent(current - amount);
 }
 

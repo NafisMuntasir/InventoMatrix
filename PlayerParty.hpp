@@ -8,7 +8,7 @@
 #include <memory>
 #include <iostream>
 
-class PlayerParty : public Party, public Character {
+class PlayerParty : public Party {
 private:
     int totalWeight;
     int partyWeightLimit;

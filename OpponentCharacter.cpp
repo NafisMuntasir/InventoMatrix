@@ -1,6 +1,7 @@
 #include "OpponentCharacter.hpp"
 #include "Battle.hpp"
 #include "BattleLog.hpp"
+#include "TickTiming.hpp"
 
 OpponentCharacter::OpponentCharacter(std::string name, int level, StatBlock stats)
     : Character(std::move(name), level, stats, 0, 200) {}

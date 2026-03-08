@@ -45,7 +45,8 @@ void PlayerParty::executeTurn(Battle& battle) {
     // Example implementation: iterate through members and let them act
     for (auto& member : getMembers()) {
         if (member && member->isAlive()) {
-            member->executeTurn(battle);
+            // Players take actions through UI/controls; this placeholder can be
+            // expanded to drive player input or AI decisions.
         }
     }
 }

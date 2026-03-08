@@ -1,13 +1,15 @@
+#pragma once
+
 #include <string>
 #include <vector>
 #include <memory>
 
+#include "StatModifier.hpp"
+#include "TickTiming.hpp"
+
 // Forward declarations
 class Battle;
 class Character;
-class StatModifier;
-
-enum class TickTiming { TurnStart, TurnEnd };
 
 class StatusEffect {
 private:

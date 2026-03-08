@@ -2,6 +2,7 @@
 #include "Battle.hpp"
 #include "BattleLog.hpp"
 #include "OverencumberedStatus.hpp"
+#include "TickTiming.hpp"
 
 PlayerCharacter::PlayerCharacter(std::string name, int level, StatBlock stats,
                                  int startWeight, int weightLimit)

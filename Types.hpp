@@ -1,18 +1,15 @@
 #pragma once
 
 // =========================
-// Shared Enums / Type Aliases
+// Shared Type Aliases
 // =========================
+// This header is intended to provide common forward declarations and
+// shared smart-pointer type aliases used across the project.
 
-enum class StatType   { MaxHP, Attack, Defense, Speed, Accuracy, Evasion, Crit };
-enum class DamageType { Physical, Magical, True };
-enum class TickTiming { TurnStart, TurnEnd };
-enum class BuffType   { AttackBuff, DefenseBuff, Nerf };
-
-// Forward declarations
 #include <memory>
 #include <vector>
 
+// Forward declarations
 class Battle;
 class Character;
 class Party;

@@ -7,7 +7,6 @@
 // combat. Provides helpers to print, query, and clear the
 // event history.
 
-#include <iostream>
 #include <string>
 #include <vector>
 
@@ -34,20 +33,15 @@ private:
 
 public:
     // Add an event message
-    void add(const std::string& msg) {
-        events.push_back(BattleEvent(msg));
-    }
+    void add(const std::string& msg);
 
     // Display all events to stdout
-    void dumpToStdout() const {
-        for (const auto& e : events)
-            std::cout << e.getText() << "\n";
-    }
+    void dumpToStdout() const;
 
     // Getters
-    const std::vector<BattleEvent>& getEvents() const { return events; }
-    std::size_t                     getEventCount() const { return events.size(); }
+    const std::vector<BattleEvent>& getEvents() const;
+    std::size_t                     getEventCount() const;
 
     // Utility
-    void clear() { events.clear(); }
+    void clear();
 };

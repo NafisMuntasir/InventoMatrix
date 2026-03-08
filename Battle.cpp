@@ -136,8 +136,9 @@ void Battle::executeRound() {
     // Rebuild party order at the start of each round
     turnManager.buildOrder(parties);
 
-    // Execute turn for each party
-    for (std::size_t i = 0; i < parties.size() && !isOver(); i++) {
+    // Execute turn for each party in the current turn order
+    const auto& queue = turnManager.getPartyQueue();
+    for (std::size_t i = 0; i < queue.size() && !isOver(); i++) {
         PartyPtr party = turnManager.nextParty();
 
         if (party && !party->isDefeated()) {

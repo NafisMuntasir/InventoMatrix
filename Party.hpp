@@ -17,12 +17,16 @@ private:
     static int count;
 
 public:
+    static constexpr int MAX_MEMBERS = 6;
+
+public:
     Party(std::string name);
     virtual ~Party();
 
     const std::string& getPartyName() const;
     int getPartyID() const;
     const std::vector<std::shared_ptr<Character>>& getMembers() const;
+    std::vector<std::shared_ptr<Character>> getAliveMembers() const;
 
     bool isFull() const;
     bool isEmpty() const;
