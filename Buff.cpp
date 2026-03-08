@@ -1,39 +1,54 @@
-#include "Buff.hpp"
-#include "Character.hpp"
-#include "Battle.hpp"
+#include "Buff.h"
 
-#include <iostream>
-#include <string>
+Buff::Buff(std::string buffName, BuffType buffType, int buffValue, int buffDuration)
+{
+    name = buffName;
+    type = buffType;
+    value = buffValue;
+    duration = buffDuration;
+}
 
-Buff::Buff(const std::string* name, int duration, TickTiming timing)
-    : statusName(name ? *name : std::string()), statusDuration(duration), timing(timing) {}
+std::string Buff::getName()
+{
+    return name;
+}
 
-std::string Buff::getName() const {
-    return statusName;
+BuffType Buff::getType()
+{
+    return type;
 }
-int Buff::getStatusDuration()const{
-    return statusDuration;
+
+int Buff::getValue()
+{
+    return value;
 }
-TickTiming Buff::getTiming()const{
-    return timing;
+
+int Buff::getDuration()
+{
+    return duration;
 }
-void Buff::decrementDuration(){
-    if(statusDuration>0){
-        statusDuration--;
-    }
+
+void Buff::setDuration(int dur)
+{
+    duration = dur;
 }
-bool Buff::isExpired()const{
-    return statusDuration<=0;
+
+void Buff::setValue(int val)
+{
+    value = val;
 }
-void Buff::applyEffect(Battle &battle,Character &actor,Character &target){
-    std::cout << "Applying Buff:" << statusName << " to " << target.getName() << std::endl;
-    if(statusName=="Poison"){
-        if(statusName=="Poison"){
-            target.takeDamage(5);
-        }
-        else if(statusName=="StrengthUp"){
-            target.increaseAttack(10);
-        }
-        decrementDuration();
-    }
+
+void Buff::decrementDuration()
+{
+    duration--;
+}
+
+bool Buff::isExpired()
+{
+    return duration <= 0;
+}
+
+void Buff::reset(int newDuration)
+{
+    duration = newDuration;
 }
