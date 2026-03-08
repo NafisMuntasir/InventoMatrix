@@ -1,29 +1,31 @@
-#ifndef BUFF_HPP
-#define BUFF_HPP
+#ifndef BUFF_H
+#define BUFF_H
 
 #include <string>
-#include <iostream>
+#include "BuffType.h"
 
-#include "StatusEffect.hpp"
-
-class Character;
-class Battle;
-
-class Buff {
-    std::string statusName;
-    int statusDuration;
-    TickTiming timing;
+class Buff
+{
+private:
+    std::string name;
+    BuffType type;
+    int value;
+    int duration;
 
 public:
-    Buff(const std::string* name, int duration, TickTiming timing);
+    Buff(std::string buffName, BuffType buffType, int buffValue, int buffDuration);
 
-    std::string getName() const;
-    int getStatusDuration() const;
-    TickTiming getTiming() const;
+    std::string getName();
+    BuffType getType();
+    int getValue();
+    int getDuration();
+
+    void setDuration(int dur);
+    void setValue(int val);
 
     void decrementDuration();
-    bool isExpired() const;
-    void applyEffect(Battle& battle, Character& character, Character& target);
+    bool isExpired();
+    void reset(int newDuration);
 };
 
 #endif
