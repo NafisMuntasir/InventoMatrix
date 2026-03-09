@@ -27,3 +27,5 @@ public:
     bool isExpired();
     void reset(int newDuration);
 };
+
+#endif
