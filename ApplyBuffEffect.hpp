@@ -15,9 +15,9 @@ private:
 public:
     ApplyBuffEffect(BuffPtr buffEffect);
 
-    void apply(Battle& battle, CharPtr actor, CharPtr target) ;
+    void apply(Battle& battle, const CharPtr& actor, const CharPtr& target) override;
 
-    std::string getDescription() const ;
+    std::string getDescription() const override;
 };
 
 #endif

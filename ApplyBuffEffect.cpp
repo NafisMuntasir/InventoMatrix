@@ -7,7 +7,7 @@ ApplyBuffEffect::ApplyBuffEffect(BuffPtr buffEffect)
     buff = buffEffect;
 }
 
-void ApplyBuffEffect::apply(Battle& battle, CharPtr actor, CharPtr target) 
+void ApplyBuffEffect::apply(Battle& battle, const CharPtr& actor, const CharPtr& target) 
 {
     if(!target || !target->isAlive())
         return;
