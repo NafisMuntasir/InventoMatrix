@@ -1,7 +1,7 @@
 #ifndef PLAYERPARTY_H
 #define PLAYERPARTY_H
 
-#include "Party.h"
+#include "Party.hpp"
 
 class PlayerParty : public Party
 {
@@ -12,14 +12,14 @@ private:
 public:
     PlayerParty(std::string name, int id, int weightLimit);
 
-    int getTotalWeight();
-    int getPartyWeightLimit();
+    int getTotalWeight() const ;
+    int getPartyWeightLimit() const ;
 
     bool isPartyOverencumbered();
 
     void setPartyWeightLimit(int limit);
 
-    bool addMember(CharPtr character) override;
+    bool addMember(const CharPtr& character) override;
 
     void updateTotalWeight();
 
