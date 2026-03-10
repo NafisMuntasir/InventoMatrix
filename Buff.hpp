@@ -2,7 +2,7 @@
 #define BUFF_H
 
 #include <string>
-#include "BuffType.h"
+#include "BuffType.hpp"
 
 class Buff
 {

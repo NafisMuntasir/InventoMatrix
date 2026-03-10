@@ -1,4 +1,4 @@
-#include "Buff.h"
+#include "Buff.hpp"
 
 Buff::Buff(std::string buffName, BuffType buffType, int buffValue, int buffDuration)
 {

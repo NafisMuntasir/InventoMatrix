@@ -1,8 +1,8 @@
 #ifndef APPLYBUFFEFFECT_H
 #define APPLYBUFFEFFECT_H
 
-#include "Effect.h"
-#include "Buff.h"
+#include "Effect.hpp"
+#include "Buff.hpp"
 #include <memory>
 
 using BuffPtr = std::shared_ptr<Buff>;
@@ -15,9 +15,9 @@ private:
 public:
     ApplyBuffEffect(BuffPtr buffEffect);
 
-    void apply(Battle& battle, CharPtr actor, CharPtr target) override;
+    void apply(Battle& battle, CharPtr actor, CharPtr target) ;
 
-    std::string getDescription() override;
+    std::string getDescription() const ;
 };
 
 #endif
