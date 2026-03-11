@@ -1,6 +1,7 @@
-#include "DamageEffect.h"
-#include "Battle.h"
-#include "Character.h"
+#include "DamageEffect.hpp"
+#include "Battle.hpp"
+#include "BattleRules.hpp"
+#include "Character.hpp"
 
 DamageEffect::DamageEffect(int base, DamageType type)
 {
@@ -8,7 +9,7 @@ DamageEffect::DamageEffect(int base, DamageType type)
     dmgType = type;
 }
 
-void DamageEffect::apply(Battle& battle, CharPtr actor, CharPtr target)
+void DamageEffect::apply(Battle& battle, const CharPtr& actor, const CharPtr& target)
 {
     if(!target || !target->isAlive())
         return;
@@ -18,7 +19,7 @@ void DamageEffect::apply(Battle& battle, CharPtr actor, CharPtr target)
     target->takeDamage(damage);
 }
 
-std::string DamageEffect::getDescription()
+std::string DamageEffect::getDescription() const 
 {
     return "Deals damage to target";
 }
