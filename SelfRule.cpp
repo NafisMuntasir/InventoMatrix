@@ -1,6 +1,7 @@
-#include "SelfRule.h"
+#include "SelfRule.hpp"
+#include "Character.hpp"
 
-std::vector<CharPtr> SelfRule::validTargets(CharPtr actor, Battle& battle)
+std::vector<CharPtr> SelfRule::validTargets(const CharPtr& actor, Battle& battle) const 
 {
     std::vector<CharPtr> targets;
 
@@ -10,12 +11,12 @@ std::vector<CharPtr> SelfRule::validTargets(CharPtr actor, Battle& battle)
     return targets;
 }
 
-bool SelfRule::canTargetAllies()
+bool SelfRule::canTargetAllies() const
 {
     return true;
 }
 
-bool SelfRule::canTargetEnemies()
+bool SelfRule::canTargetEnemies() const
 {
     return false;
 }

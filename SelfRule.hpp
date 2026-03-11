@@ -1,16 +1,16 @@
 #ifndef SELFRULE_H
 #define SELFRULE_H
 
-#include "TargetingRule.h"
+#include "TargetingRule.hpp"
 
 class SelfRule : public TargetingRule
 {
 public:
-    std::vector<CharPtr> validTargets(CharPtr actor, Battle& battle) override;
+    std::vector<CharPtr> validTargets(const CharPtr& actor, Battle& battle) const override;
 
-    bool canTargetAllies() override;
+    bool canTargetAllies() const override;
 
-    bool canTargetEnemies() override;
+    bool canTargetEnemies() const override;
 };
 
 #endif
