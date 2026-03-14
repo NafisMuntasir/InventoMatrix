@@ -2,29 +2,37 @@
 #include "Battle.hpp"
 #include <iostream>
 
-PlayerParty::PlayerParty(std::string name, int id, int weightLimit)
-    : Party(name, id, 4), totalWeight(0), partyWeightLimit(weightLimit)
+using namespace std;
+
+PlayerParty::PlayerParty(string name, int id, int weightLimit)
+    : Party(name, id, 4)
 {
+    totalWeight = 0;
+    partyWeightLimit = weightLimit;
 }
 
-int PlayerParty::getTotalWeight() const {
+int PlayerParty::getTotalWeight() const
+{
     return totalWeight;
 }
 
-int PlayerParty::getPartyWeightLimit() const {
+int PlayerParty::getPartyWeightLimit() const
+{
     return partyWeightLimit;
 }
 
-bool PlayerParty::isPartyOverencumbered() const {
+bool PlayerParty::isPartyOverencumbered() const
+{
     return totalWeight > partyWeightLimit;
 }
 
-void PlayerParty::setPartyWeightLimit(int limit) {
+void PlayerParty::setPartyWeightLimit(int limit)
+{
     partyWeightLimit = limit;
 }
 
-bool PlayerParty::addMember(std::shared_ptr<Character> character) {
-
+bool PlayerParty::addMember(shared_ptr<Character> character)
+{
     if (isFull())
         return false;
 
@@ -35,7 +43,8 @@ bool PlayerParty::addMember(std::shared_ptr<Character> character) {
 
     bool added = Party::addMember(character);
 
-    if (added) {
+    if (added)
+    {
         totalWeight += weight;
         character->setOwnerParty(this);
     }
@@ -43,38 +52,43 @@ bool PlayerParty::addMember(std::shared_ptr<Character> character) {
     return added;
 }
 
-void PlayerParty::updateTotalWeight() {
-
+void PlayerParty::updateTotalWeight()
+{
     totalWeight = 0;
 
-    for (auto &member : getMembers()) {
+    for (auto &member : getMembers())
+    {
         if (member)
             totalWeight += member->getWeight();
     }
 }
 
-void PlayerParty::executeTurn(Battle& battle) {
-
-    for (auto &member : getMembers()) {
-
-        if (member && member->isAlive() && member->canAct()) {
+void PlayerParty::executeTurn(Battle& battle)
+{
+    for (auto &member : getMembers())
+    {
+        if (member && member->isAlive() && member->canAct())
+        {
             member->onTurnStart(battle);
 
-            // Player-controlled actions handled externally (UI/input)
+            // Player actions handled externally (UI/input)
 
             member->onTurnEnd(battle);
         }
     }
 }
 
-void PlayerParty::onTurnStart(Battle& battle) {
-    std::cout << "Player party turn started.\n";
+void PlayerParty::onTurnStart(Battle& battle)
+{
+    cout << "Player party turn started." << endl;
 }
 
-void PlayerParty::onTurnEnd(Battle& battle) {
-    std::cout << "Player party turn ended.\n";
+void PlayerParty::onTurnEnd(Battle& battle)
+{
+    cout << "Player party turn ended." << endl;
 }
 
-bool PlayerParty::isPlayerParty() const {
+bool PlayerParty::isPlayerParty() const
+{
     return true;
 }
