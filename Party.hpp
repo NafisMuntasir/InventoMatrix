@@ -4,42 +4,50 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
 
 class Character;
 class Battle;
 
+using CharPtr = shared_ptr<Character>;
+
 class Party {
 private:
-    std::string partyName;
-    int partyID;
-    std::vector<std::shared_ptr<Character>> members;
-    
-    static int count;
+    string partyName;
+    int partyId;
+    vector<CharPtr> members;
+    int maxMembers;
 
 public:
-    static constexpr int MAX_MEMBERS = 6;
-
-public:
-    Party(std::string name);
+    Party(string name, int id, int maxSize);
     virtual ~Party();
 
-    const std::string& getPartyName() const;
-    int getPartyID() const;
-    const std::vector<std::shared_ptr<Character>>& getMembers() const;
-    std::vector<std::shared_ptr<Character>> getAliveMembers() const;
+    // Getters
+    const string& getPartyName() const;
+    int getPartyId() const;
+    int getMaxMembers() const;
+    const vector<CharPtr>& getMembers() const;
 
-    bool isFull() const;
-    bool isEmpty() const;
+    vector<CharPtr> getAliveMembers() const;
+    int getAliveCount() const;
+
     bool isDefeated() const;
-    int getAliveMembersCount() const;
+    bool isFull() const;
 
-    virtual void addMember(std::shared_ptr<Character> member);
-    void removeMember(std::shared_ptr<Character> member);
+    // Setters
+    void setPartyName(const string& name);
+    void setMaxMembers(int max);
 
+    // Member management
+    virtual bool addMember(const CharPtr& character);
+
+    // Virtual functions from UML
     virtual void executeTurn(Battle& battle) = 0;
     virtual void onTurnStart(Battle& battle) = 0;
     virtual void onTurnEnd(Battle& battle) = 0;
-
     virtual bool isPlayerParty() const = 0;
 };
 
