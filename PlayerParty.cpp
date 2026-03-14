@@ -1,8 +1,11 @@
 #include "PlayerParty.hpp"
 #include "Battle.hpp"
+#include <iostream>
 
-PlayerParty::PlayerParty(std::string name, int weightLimit, int weight)
-    : Party(name), totalWeight(weight), partyWeightLimit(weightLimit) {}
+PlayerParty::PlayerParty(std::string name, int id, int weightLimit)
+    : Party(name, id, 4), totalWeight(0), partyWeightLimit(weightLimit)
+{
+}
 
 int PlayerParty::getTotalWeight() const {
     return totalWeight;
@@ -12,51 +15,64 @@ int PlayerParty::getPartyWeightLimit() const {
     return partyWeightLimit;
 }
 
-void PlayerParty::setTotalWeight(int weight) {
-    totalWeight = weight;
+bool PlayerParty::isPartyOverencumbered() const {
+    return totalWeight > partyWeightLimit;
 }
 
-void PlayerParty::setPartyWeightLimit(int weightLimit) {
-    partyWeightLimit = weightLimit;
+void PlayerParty::setPartyWeightLimit(int limit) {
+    partyWeightLimit = limit;
 }
 
-void PlayerParty::addMember(std::shared_ptr<Character> member, int weight) {
-    if (!isFull() && totalWeight + weight <= partyWeightLimit) {
-        Party::addMember(member);
+bool PlayerParty::addMember(std::shared_ptr<Character> character) {
+
+    if (isFull())
+        return false;
+
+    int weight = character->getWeight();
+
+    if (totalWeight + weight > partyWeightLimit)
+        return false;
+
+    bool added = Party::addMember(character);
+
+    if (added) {
         totalWeight += weight;
-    } else {
-        std::cout << "Cannot add member. Either party is full or weight limit exceeded." << std::endl;
+        character->setOwnerParty(this);
     }
+
+    return added;
 }
 
-void PlayerParty::updateTotalWeight(int weightChange) {
-    totalWeight += weightChange;
-    if (totalWeight > partyWeightLimit) {
-        std::cout << "Party weight has exceeded the limit! You may need to remove some members." << std::endl;
-    }
-}
+void PlayerParty::updateTotalWeight() {
 
-void PlayerParty::removeMember(std::shared_ptr<Character> member, int weight) {
-    Party::removeMember(member);
-    totalWeight -= weight;
+    totalWeight = 0;
+
+    for (auto &member : getMembers()) {
+        if (member)
+            totalWeight += member->getWeight();
+    }
 }
 
 void PlayerParty::executeTurn(Battle& battle) {
-    // Example implementation: iterate through members and let them act
-    for (auto& member : getMembers()) {
-        if (member && member->isAlive()) {
-            // Players take actions through UI/controls; this placeholder can be
-            // expanded to drive player input or AI decisions.
+
+    for (auto &member : getMembers()) {
+
+        if (member && member->isAlive() && member->canAct()) {
+            member->onTurnStart(battle);
+
+            // Player-controlled actions handled externally (UI/input)
+
+            member->onTurnEnd(battle);
         }
     }
 }
 
 void PlayerParty::onTurnStart(Battle& battle) {
-    std::cout << "Player party turn start." << std::endl;
+    std::cout << "Player party turn started.\n";
 }
 
 void PlayerParty::onTurnEnd(Battle& battle) {
-    std::cout << "Player party turn end." << std::endl;
+    std::cout << "Player party turn ended.\n";
 }
 
 bool PlayerParty::isPlayerParty() const {
