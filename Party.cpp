@@ -1,87 +1,67 @@
-
 #include "Party.hpp"
 #include "Character.hpp"
-#include <iostream>
 
-int Party::count = 0;
+Party::Party(string name, int id, int maxSize)
+    : partyName(move(name)), partyId(id), maxMembers(maxSize) {}
 
-Party::Party(std::string name){
-    partyName = name;
-    partyID = ++count;
-}
+Party::~Party() = default;
 
-Party::~Party(){
-    count--;
-}
-
-const std::string& Party::getPartyName() const {
+const string& Party::getPartyName() const {
     return partyName;
 }
 
-int Party::getPartyID() const {
-    return partyID;
+int Party::getPartyId() const {
+    return partyId;
 }
 
-const std::vector<std::shared_ptr<Character>>& Party::getMembers() const {
+int Party::getMaxMembers() const {
+    return maxMembers;
+}
+
+const vector<CharPtr>& Party::getMembers() const {
     return members;
 }
 
-std::vector<std::shared_ptr<Character>> Party::getAliveMembers() const {
-    std::vector<std::shared_ptr<Character>> alive;
-    for (const auto& member : members) {
-        if (member && member->isAlive()) {
-            alive.push_back(member);
-        }
+vector<CharPtr> Party::getAliveMembers() const {
+    vector<CharPtr> alive;
+
+    for (const auto& m : members) {
+        if (m->isAlive())
+            alive.push_back(m);
     }
+
     return alive;
 }
 
-void Party::addMember(std::shared_ptr<Character> member){
-    if(members.size() < MAX_MEMBERS){
-        members.push_back(member);
-        if(member){
-            member->setOwnerParty(this);
-        }
-    }
-    else{
-        std::cout<<"Party is full. Cannot add any more members"<<std::endl;
-    }
+int Party::getAliveCount() const {
+    return static_cast<int>(getAliveMembers().size());
 }
 
-void Party::removeMember(std::shared_ptr<Character> member){
-    for(int i = 0; i < members.size(); i++){
-        if(members[i] == member){
-            members[i]->setOwnerParty(nullptr);
-            members.erase(members.begin() + i);
-            return;
-        }
+bool Party::isDefeated() const {
+    return getAliveCount() == 0;
+}
+
+bool Party::isFull() const {
+    return static_cast<int>(members.size()) >= maxMembers;
+}
+
+void Party::setPartyName(const string& name) {
+    partyName = name;
+}
+
+void Party::setMaxMembers(int max) {
+    maxMembers = max(1, max);
+}
+
+bool Party::addMember(const CharPtr& character) {
+
+    if (isFull()) {
+        cout << "Party is full!\n";
+        return false;
     }
-    std::cout<<"Member not found"<<std::endl;
-}
 
-bool Party::isFull() const{
-    return members.size() >= MAX_MEMBERS;
-}
+    members.push_back(character);
+    character->setOwnerParty(this);
 
-bool Party::isEmpty() const{
-    return members.empty();
-}
-
-bool Party::isDefeated() const{
-    for(int i = 0; i < members.size(); i++){
-        if(members[i] && members[i]->isAlive()){
-            return false;
-        }
-    }
     return true;
-}
-
-int Party::getAliveMembersCount() const{
-    int alive = 0;
-    for(int i = 0; i < members.size(); i++){
-        if(members[i] && members[i]->isAlive()){
-            alive++;
-        }
-    }
-    return alive;
 }
