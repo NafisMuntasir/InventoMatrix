@@ -1,5 +1,6 @@
 #include "PlayerParty.hpp"
 #include "Battle.hpp"
+#include "Character.hpp"
 
 using namespace std;
 
@@ -26,7 +27,7 @@ bool PlayerParty::isPartyOverencumbered() const {
     return totalWeight > partyWeightLimit;
 }
 
-bool PlayerParty::addMember(const CharPtr& character) {
+bool PlayerParty::addMember(const std::shared_ptr<Character>& character) {
 
     if (Party::addMember(character)) {
 
