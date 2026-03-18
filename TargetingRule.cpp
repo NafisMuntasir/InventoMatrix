@@ -1,13 +1,11 @@
-#include "TargetingRule.hpp"
-#include "Battle.hpp"
-#include "Party.hpp"
+#include "TargetingRule.h"
 
-void TargetingRule::applyRule(Battle& battle, Character& actor, Party& target) {
-    if (validateTarget(target)) {
-        battle.executeAction(actor, target);
-    }
+// Same logic moved from inline → cpp
+
+bool TargetingRule::canTargetAllies() const {
+    return false;
 }
 
-bool TargetingRule::validateTarget(const Party& target) const {
-    return !target.isEmpty();
+bool TargetingRule::canTargetEnemies() const {
+    return true;
 }
