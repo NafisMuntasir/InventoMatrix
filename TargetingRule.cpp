@@ -1,4 +1,4 @@
-#include "TargetingRule.h"
+#include "TargetingRule.hpp"
 
 // Same logic moved from inline → cpp
 
