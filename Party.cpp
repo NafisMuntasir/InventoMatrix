@@ -65,3 +65,10 @@ bool Party::addMember(const CharPtr& character) {
 
     return true;
 }
+ 
+void Party::removeMember(const CharPtr& character) {
+    members.erase(
+        std::remove(members.begin(), members.end(), character),
+        members.end()
+    );
+}

@@ -43,6 +43,7 @@ public:
 
     // Member management
     virtual bool addMember(const CharPtr& character);
+    void removeMember(const CharPtr& character);
 
     // Virtual functions from UML
     virtual void executeTurn(Battle& battle) = 0;
