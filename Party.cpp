@@ -50,7 +50,7 @@ void Party::setPartyName(const string& name) {
 }
 
 void Party::setMaxMembers(int max) {
-    maxMembers = max(1, max);
+    maxMembers = std::max(1, max);
 }
 
 bool Party::addMember(const CharPtr& character) {
