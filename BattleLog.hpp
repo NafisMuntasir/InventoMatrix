@@ -6,7 +6,7 @@
 // Stores a sequential log of BattleEvents produced during
 // combat. Provides helpers to print, query, and clear the
 // event history.
-
+#include "BattleEvent.hpp"
 #include <string>
 #include <vector>
 
