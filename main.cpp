@@ -175,6 +175,6 @@ int main() {
     }
 
     std::cout << BattleOutcome(battle.getWinner());
-
+    
     return 0;
 }
