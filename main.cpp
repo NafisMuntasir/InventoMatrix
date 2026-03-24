@@ -3,6 +3,7 @@
 #include <memory>
 #include <cstdlib>
 #include <ctime>
+#include <string>
 
 #include "Battle.hpp"
 #include "BattleRules.hpp"
@@ -70,6 +71,45 @@ public:
     }
 };
 
+// Friend function + operator overloading for ENTER pause
+class RoundPause {
+private:
+    std::string prompt;
+
+public:
+    explicit RoundPause(const std::string& text = "Press ENTER to continue to next round...")
+        : prompt(text) {}
+
+    friend std::istream& operator>>(std::istream& in, RoundPause& pause);
+};
+
+std::istream& operator>>(std::istream& in, RoundPause& pause) {
+    std::cout << pause.prompt;
+    in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    return in;
+}
+
+// Friend function + operator overloading for final battle result
+class BattleOutcome {
+private:
+    std::shared_ptr<Party> winner;
+
+public:
+    explicit BattleOutcome(std::shared_ptr<Party> winningParty)
+        : winner(std::move(winningParty)) {}
+
+    friend std::ostream& operator<<(std::ostream& out, const BattleOutcome& outcome);
+};
+
+std::ostream& operator<<(std::ostream& out, const BattleOutcome& outcome) {
+    if (outcome.winner) {
+        out << "\n" << outcome.winner->getPartyName() << " won the battle!\n";
+    } else {
+        out << "\nBattle ended with no winner (all defeated).\n";
+    }
+    return out;
+}
+
 int main() {
     srand(static_cast<unsigned>(time(nullptr)));
 
@@ -120,23 +160,21 @@ int main() {
     battle.getLog()->dumpToStdout();
     battle.getLog()->clear();
 
+    RoundPause pause;
+
     while (!battle.isOver()) {
         battle.executeRound();
         battle.getLog()->dumpToStdout();
         battle.getLog()->clear();
 
-        if (battle.isOver()) break;
+        if (battle.isOver()) {
+            break;
+        }
 
-        std::cout << "Press ENTER to continue to next round...";
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cin >> pause;
     }
 
-    auto winner = battle.getWinner();
-    if (winner) {
-        std::cout << "\n" << winner->getPartyName() << " won the battle!\n";
-    } else {
-        std::cout << "\nBattle ended with no winner (all defeated).\n";
-    }
+    std::cout << BattleOutcome(battle.getWinner());
 
     return 0;
 }
