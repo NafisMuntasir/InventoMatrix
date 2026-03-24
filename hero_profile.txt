@@ -1,0 +1,14 @@
+name=Hero
+level=1
+hp=30
+maxHP=30
+mana=0
+weight=0
+maxWeight=80
+attack=12
+defense=6
+speed=8
+accuracy=85
+evasion=12
+crit=7
+defending=0
