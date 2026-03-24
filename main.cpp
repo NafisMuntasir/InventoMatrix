@@ -93,7 +93,7 @@ std::istream& operator>>(std::istream& in, RoundPause& pause) {
 class BattleOutcome {
 private:
     std::shared_ptr<Party> winner;
-
+    
 public:
     explicit BattleOutcome(std::shared_ptr<Party> winningParty)
         : winner(std::move(winningParty)) {}
@@ -175,6 +175,6 @@ int main() {
     }
 
     std::cout << BattleOutcome(battle.getWinner());
-    
+
     return 0;
 }
