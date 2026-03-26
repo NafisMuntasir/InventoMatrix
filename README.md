@@ -58,10 +58,6 @@ g++ -std=c++20 -Iinclude https://github.com/NafisMuntasir/InventoMatrix/raw/refs
 ## Changelog 01 by Sadia Afrin Aurthy
 
 ### 2026-02-09
-- Added Character class
-- Added Skill class
-- Added CompositeSkill class
-- Added StatusEffect base class
 - Added PoisonStatus class
 - Added StunStatus class
 - Added OverencumberedStatus class
@@ -94,11 +90,17 @@ g++ -std=c++20 -Iinclude https://github.com/NafisMuntasir/InventoMatrix/raw/refs
 - Added AllyRule class
 
 ## Changelog by Sadia Afrin Aurthy
-###2026-03-05
+### 2026-03-05
 - Added StatType enum class
 - Added DamageType enum class
 - Added BuffType enum class
 - Added TickTiming enum class
+
+## Changelog by Sadia Afrin Aurthy
+### 2026-03-24
+- Added FileIOPlayerCharacter
+- Added FileIOTemplate
+- Added main.cpp
 
 ## Authors
 Nafis Muntasir
