@@ -9,14 +9,14 @@ PlayerCharacter::PlayerCharacter(std::string name, int level, StatBlock stats,
     : Character(std::move(name), level, stats, startWeight, weightLimit) {}
 
 void PlayerCharacter::onTurnStart(Battle& battle) {
-    tickStatuses(battle, TickTiming::TurnStart);
-    tickCooldowns();
+    tickStatuses(battle, TickTiming::TurnStart); // Append the battle log after status has expired/duration is over
+    tickCooldowns(); // How many turns remain to use the Skill again
 
     if (isOverencumbered()) {
         battle.getLog()->add("  " + getName() + " is overencumbered! Movement hindered.");
 
         // Apply temporary speed reduction for this turn
-        auto overencumberStatus = std::make_shared<OverencumberedStatus>(1, 5);
+        auto overencumberStatus = std::make_shared<OverencumberedStatus>(1, 5);  // Duration, speedPenalty
         applyStatus(battle, overencumberStatus);
     }
 }
