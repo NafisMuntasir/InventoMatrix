@@ -16,7 +16,7 @@ bool BasicAttackAction::validate(Battle& battle) const {
 void BasicAttackAction::execute(Battle& battle) {
     battle.getLog()->add("  " + actor->getName() + " attacks " + target->getName() + "!");
 
-    if (!battle.getRules().rollHit(actor, target)) {
+    if (!battle.getRules().rollHit(actor, target)) { // getRules() returns the object of BattleRules class
         battle.getLog()->add("    Miss!");
         return;
     }

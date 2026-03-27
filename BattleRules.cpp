@@ -29,9 +29,9 @@ void BattleRules::setMaxHitChance(int chance) {
 bool BattleRules::rollHit(const CharPtr& actor, const CharPtr& target) const {
     int acc    = actor->getFinalStat(StatType::Accuracy);
     int eva    = target->getFinalStat(StatType::Evasion);
-    int chance = std::clamp(acc - eva, minHitChance, maxHitChance);
+    int chance = std::clamp(acc - eva, minHitChance, maxHitChance); // Clamp within min & max
     int r      = rand() % 100;
-    return r < chance;
+    return r < chance;  // true -> attack/hit
 }
 
 int BattleRules::computeDamage(const CharPtr& actor, const CharPtr& target,
