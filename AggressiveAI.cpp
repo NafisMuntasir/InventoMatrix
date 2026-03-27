@@ -18,7 +18,9 @@ std::shared_ptr<Action> AggressiveAI::chooseAction(Battle& battle,
         }
     }
 
-    return std::make_shared<BasicAttackAction>(actor, target);
+    return std::make_shared<BasicAttackAction>(actor, target); // Creating an object using attacker, defender
+
+    // BasicAttackAction derived from the Action
 }
 
 std::string AggressiveAI::getAIType() const {
