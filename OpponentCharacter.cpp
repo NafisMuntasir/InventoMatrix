@@ -16,7 +16,7 @@ std::shared_ptr<AIController> OpponentCharacter::getAI() const {
 
 void OpponentCharacter::onTurnStart(Battle& battle) {
     tickStatuses(battle, TickTiming::TurnStart);
-    tickCooldowns();
+    tickCooldowns();  // Decreases the currentCooldown
 }
 
 void OpponentCharacter::onTurnEnd(Battle& battle) {
