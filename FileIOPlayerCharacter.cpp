@@ -16,7 +16,7 @@ bool savePlayerCharacter(const PlayerCharacter& pc, const std::string& filepath)
     const StatBlock& stats = pc.getBaseStats();
     std::ostringstream out;
 
-    out << "name=" << pc.getName() << "\n";
+    out << "name=" << pc.getName() << "\n";     // Serializing : Converting PlayerCharacter objs into text file
     out << "level=" << pc.getLevel() << "\n";
     out << "hp=" << pc.getHP() << "\n";
     out << "maxHP=" << pc.getMaxHP() << "\n";
@@ -41,7 +41,7 @@ std::optional<PlayerCharacterData> loadPlayerCharacterData(const std::string& fi
     }
 
     PlayerCharacterData data;
-    std::istringstream stream(*source);
+    std::istringstream stream(*source);         // Turns the string into stream
     std::string line;
 
     while (std::getline(stream, line)) {

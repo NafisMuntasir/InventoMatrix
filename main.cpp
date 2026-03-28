@@ -85,7 +85,7 @@ public:
 
 std::istream& operator>>(std::istream& in, RoundPause& pause) {
     std::cout << pause.prompt;
-    in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');     // User hit ENTER input contains a newline
     return in;
 }
 
@@ -136,7 +136,7 @@ int main() {
 
     // Build parties
     auto playerParty = std::make_shared<DemoPlayerParty>("Adventurers", 1, 4);
-    playerParty->addMember(hero);
+    playerParty->addMember(hero);        // PlayerCharacter has been added to PlayerParty
 
     auto mageStats = StatBlock(24, 10, 4, 9, 90, 14, 8);
     playerParty->addMember(std::make_shared<PlayerCharacter>("Mage", 1, mageStats, 0, 70));
@@ -157,7 +157,7 @@ int main() {
     battle.addParty(opponentParty);
 
     battle.start();
-    battle.getLog()->dumpToStdout();
+    battle.getLog()->dumpToStdout();     // Prints battle events msgs
     battle.getLog()->clear();
 
     RoundPause pause;
